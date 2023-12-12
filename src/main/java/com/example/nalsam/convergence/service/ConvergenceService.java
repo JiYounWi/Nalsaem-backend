@@ -46,7 +46,7 @@ public class ConvergenceService {
                 .age(age)
                 .heartRate(user.getHeartRate())
                 .oxygenSaturation(user.getOxygenSaturation())
-                .symtom(user.getSymptom())
+                .symptom(user.getSymptom())
                 .build();
     }
 
@@ -65,7 +65,7 @@ public class ConvergenceService {
 
     private int convergenceScore(ConvergenceData convergenceData) {
         int convergenceScore = Stream.of(
-                        new StatusScore(convergenceData.getAge(), convergenceData.getSymtom()).measureStatusScore(),
+                        new StatusScore(convergenceData.getAge(), convergenceData.getSymptom()).measureStatusScore(),
                         new HealthScore(convergenceData.getHeartRate(),
                                 convergenceData.getOxygenSaturation()).measureHealthScore(),
                         new WeatherScore(convergenceData.getTemperature(), convergenceData.getHumidity(),
@@ -73,7 +73,7 @@ public class ConvergenceService {
                         new AirQualityScore(convergenceData.getPm10Grade(), convergenceData.getPm25Grade(),
                                 convergenceData.getSo2Grade(),
                                 convergenceData.getO3Grade(), convergenceData.getNo2Grade(), convergenceData.getCoGrade(),
-                                convergenceData.getSymtom()).measureAirQualityScore())
+                                convergenceData.getSymptom()).measureAirQualityScore())
                 .reduce(0, Integer::sum);
         return convergenceScore;
     }
@@ -81,7 +81,7 @@ public class ConvergenceService {
     private String convergenceExplaintoin(int convergenceScore, ConvergenceData convergenceData) {
         String goingOutMessage = generateGoingOutMessage(convergenceScore);
         String formattedMessage = String.format(defaultExplanation, convergenceData.getUserName(),
-                convergenceData.getSymtom(), convergenceData.getOxygenSaturation(), convergenceData.getHeartRate(),
+                convergenceData.getSymptom(), convergenceData.getOxygenSaturation(), convergenceData.getHeartRate(),
                 convergenceScore, goingOutMessage);
         return formattedMessage;
     }

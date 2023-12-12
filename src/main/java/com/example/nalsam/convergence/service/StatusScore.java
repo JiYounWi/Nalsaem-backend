@@ -3,24 +3,24 @@ package com.example.nalsam.convergence.service;
 public class StatusScore {
 	
 	private int age;
-	private String symtom[];
+	private String symptom[];
 	private int score = 8;
 	
-	StatusScore(int age, String symtom){
+	StatusScore(int age, String symptom){
 		this.age = age;
-		this.symtom = symtom.trim().split(",");
+		this.symptom = symptom.trim().split(",");
 	}
 	
 	public int measureStatusScore() {
 		measureAgeScore();
-		measureSymtomScore();
+		measureSymptomScore();
 		System.out.println("상태점수 : "+ score);
 		return score;
 	}
 	private void measureAgeScore(){
 		boolean flag = false;
 
-		for(String i : symtom) {
+		for(String i : symptom) {
 			if(i.equals("천식")) {
 				flag = true;
 			}
@@ -44,8 +44,8 @@ public class StatusScore {
 			}
 		}
 	}
-	private void measureSymtomScore(){
-		for(String symtom : symtom){
+	private void measureSymptomScore(){
+		for(String symptom : symptom){
 			score -=8;
 		}
 	}

@@ -7,7 +7,7 @@ public class AirQualityScore {
     private String o3Grade;    // 오존
     private String no2Grade;   // 이산화질소
     private String coGrade;    // 일산화탄소
-    private String symtom;     // 증상
+    private String symptom;     // 증상
     private int airQualityScore;
 
     public AirQualityScore(String pm10Grade, String pm25Grade, String so2Grade, String o3Grade, String no2Grade,
@@ -18,17 +18,17 @@ public class AirQualityScore {
         this.o3Grade = o3Grade;
         this.no2Grade = no2Grade;
         this.coGrade = coGrade;
-        this.symtom = symtom;
+        this.symptom = symtom;
     }
 
     public int measureAirQualityScore() {
         airQualityScore = 0;
 
         // 미세먼지, 초미세먼지, 아황산가스, 오존, 이산화질소, 일산화탄소에 대한 등급에 따라 점수 계산
-        airQualityScore += getGradeScore(pm10Grade, symtom);
-        airQualityScore += getGradeScore(pm25Grade, symtom);
-        airQualityScore += getGradeScoreSub(so2Grade, symtom);
-        airQualityScore += getGradeScoreSub(o3Grade, symtom);
+        airQualityScore += getGradeScore(pm10Grade, symptom);
+        airQualityScore += getGradeScore(pm25Grade, symptom);
+        airQualityScore += getGradeScoreSub(so2Grade, symptom);
+        airQualityScore += getGradeScoreSub(o3Grade, symptom);
         airQualityScore += getGradeScore(no2Grade, "");
         airQualityScore += getGradeScore(coGrade, "");
         System.out.println("대기질 점수 : "+ airQualityScore);
@@ -37,18 +37,18 @@ public class AirQualityScore {
         return airQualityScore;
     }
 
-    private int getGradeScore(String grade, String symtom) {
+    private int getGradeScore(String grade, String symptom) {
         switch (grade) {
             case "좋음":
                 return 7;
             case "보통":
-            	if(symtom.equals("천식")) return 4;
+            	if(symptom.equals("천식")) return 4;
             	else return 6;
             case "나쁨":
-            	if(symtom.equals("천식")) return 1;
+            	if(symptom.equals("천식")) return 1;
             	else return 3;
             case "매우나쁨":
-            	if(symtom.equals("천식")) return 0;
+            	if(symptom.equals("천식")) return 0;
             	else return 2;
             default:
                 return 0; // 등급이 정의되지 않은 경우 0점 처리
@@ -56,18 +56,18 @@ public class AirQualityScore {
     }
     
     //아황산가스, 오존만
-    private int getGradeScoreSub(String grade, String symtom) {
+    private int getGradeScoreSub(String grade, String symptom) {
     	switch (grade) {
 	    	case "좋음":
 	    		return 7;
 	    	case "보통":
-	    		if(symtom.equals("천식")) return 5;
+	    		if(symptom.equals("천식")) return 5;
 	    		else return 6;
 	    	case "나쁨":
-	    		if(symtom.equals("천식")) return 2;
+	    		if(symptom.equals("천식")) return 2;
 	    		else return 3;
 	    	case "매우나쁨":
-	    		if(symtom.equals("천식")) return 1;
+	    		if(symptom.equals("천식")) return 1;
 	    		else return 2;
 	    	default:
 	    		return 0; // 등급이 정의되지 않은 경우 0점 처리

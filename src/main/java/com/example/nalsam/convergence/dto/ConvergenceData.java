@@ -27,12 +27,12 @@ public class ConvergenceData {
     private Integer age; //나이
     private Integer heartRate; //심박수
     private Integer oxygenSaturation; // 산소포화도
-    private String symtom; //증상
+    private String symptom; //증상
 
     @Builder
     public ConvergenceData(String pm10Grade, String pm25Grade, String so2Grade, String o3Grade, String no2Grade,
                            String coGrade, Double temperature, int precipitation, int humidity,String userName, Integer age,
-                           Integer heartRate, Integer oxygenSaturation, String symtom) {
+                           Integer heartRate, Integer oxygenSaturation, String symptom) {
         this.pm10Grade = pm10Grade;
         this.pm25Grade = pm25Grade;
         this.so2Grade = so2Grade;
@@ -46,6 +46,6 @@ public class ConvergenceData {
         this.age = age;
         this.heartRate = heartRate;
         this.oxygenSaturation = oxygenSaturation;
-        this.symtom = symtom;
+        this.symptom = symptom;
     }
 }

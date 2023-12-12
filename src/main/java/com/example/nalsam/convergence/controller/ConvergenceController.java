@@ -33,5 +33,4 @@ public class ConvergenceController {
         
         return ResponseEntity.ok(convergenceResponse);
     }
-
 }
